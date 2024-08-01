@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+  </head>
+  <body>
+    {% extends "base.html" %}
+
+{% block content %}
+<h2>Editar Repuesto</h2>
+<form method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="{{ repuesto.nombre }}" required><br>
+    
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" value="{{ repuesto.cantidad }}" required><br>
+    
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" value="{{ repuesto.precio }}" required><br>
+    
+    <label for="foto">Foto:</label>
+    <input type="file" id="foto" name="foto"><br>
+    
+    <label for="marca_id">Marca:</label>
+    <select id="marca_id" name="marca_id" required>
+        {% for marca in marcas %}
+        <option value="{{ marca.id }}" {% if marca.id == repuesto.marca_id %}selected{% endif %}>{{ marca.nombre }}</option>
+        {% endfor %}
+    </select><br>
+    
+    <button type="submit">Actualizar Repuesto</button>
+</form>
+{% endblock %}
+
+    
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lista</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+  </head>
+  <body>
+    {% extends "base.html" %}
+
+{% block content %}
+<h2>Factura #{{ factura.id }}</h2>
+<p>Fecha: {{ factura.fecha }}</p>
+<p>Total: {{ factura.total }}</p>
+<h3>Detalles</h3>
+<ul>
+    {% for detalle in factura.detalles %}
+    <li>
+        Repuesto: {{ detalle.nombreR }} - Cantidad: {{ detalle.cantida }} - Precio Unitario: {{ detalle.precioU }} - Subtotal: {{ detalle.subtotal }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+    
+  </body>
+</html>
